@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import './CreateTeacherModal.css';
 
 interface CreateStudentModalProps {
@@ -15,6 +16,7 @@ export const CreateStudentModal: React.FC<CreateStudentModalProps> = ({
 }) => {
   const { accessToken } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     first_name: '',
@@ -56,7 +58,7 @@ export const CreateStudentModal: React.FC<CreateStudentModalProps> = ({
         date_of_birth: formData.date_of_birth || null,
       };
 
-      const response = await fetch('http://localhost:8000/api/v1/students/', {
+      const response = await fetch(`${API_BASE_URL}/students/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -161,16 +163,26 @@ export const CreateStudentModal: React.FC<CreateStudentModalProps> = ({
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="password">Password *</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-                required
-                disabled={loading}
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  required
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? '👁️' : '🙈'}
+                </button>
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="date_of_birth">Date of Birth (Optional)</label>

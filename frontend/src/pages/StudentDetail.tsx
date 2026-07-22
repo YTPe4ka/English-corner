@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import { Toasts } from '../components/Toast';
 import './StudentDetail.css';
 
-const API_BASE = 'http://localhost:8000/api/v1';
+const API_BASE = API_BASE_URL;
 
 interface User {
   id: number;

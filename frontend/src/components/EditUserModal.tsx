@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import './CreateTeacherModal.css';
 
 interface EditUserModalProps {
@@ -150,9 +151,9 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
     setError('');
     try {
       let deleteEndpoint = '';
-      if (userType === 'teacher') deleteEndpoint = `http://localhost:8000/api/v1/teachers/${user.id}/`;
-      else if (userType === 'student') deleteEndpoint = `http://localhost:8000/api/v1/students/${user.id}/`;
-      else if (userType === 'admin') deleteEndpoint = `http://localhost:8000/api/v1/admins/${user.id}/`;
+      if (userType === 'teacher') deleteEndpoint = `${API_BASE_URL}/teachers/${user.id}/`;
+      else if (userType === 'student') deleteEndpoint = `${API_BASE_URL}/students/${user.id}/`;
+      else if (userType === 'admin') deleteEndpoint = `${API_BASE_URL}/admins/${user.id}/`;
       const res = await fetch(deleteEndpoint, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${accessToken}` }

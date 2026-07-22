@@ -8,6 +8,7 @@ import BonusModal from '../components/BonusModal';
 import RemoveLessonModal from '../components/RemoveLessonModal';
 import ExtendLearning from '../components/ExtendLearning';
 import { Toasts } from '../components/Toast';
+import { API_BASE_URL } from '../api/config';
 import LessonDetailModal from '../components/LessonDetailModal';
 import LessonEditModal from '../components/LessonEditModal';
 import './AdminDashboard.css';
@@ -56,7 +57,7 @@ export const GroupDetail: React.FC = () => {
   const loadGroup = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/groups/${id}/`, {
+      const res = await fetch(`${API_BASE_URL}/groups/${id}/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (!res.ok) throw new Error('Failed to load group');
@@ -79,7 +80,7 @@ export const GroupDetail: React.FC = () => {
   const loadLessons = async (groupId: string) => {
     try {
       const res = await fetch(
-        `http://localhost:8000/api/v1/lessons/by_group/?group_id=${groupId}`,
+        `${API_BASE_URL}/lessons/by_group/?group_id=${groupId}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.ok) {
@@ -94,7 +95,7 @@ export const GroupDetail: React.FC = () => {
   const loadAttendance = async (groupId: string) => {
     setAttendanceLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/attendance/?group_id=${groupId}`, {
+      const res = await fetch(`${API_BASE_URL}/attendance/?group_id=${groupId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (res.ok) {
@@ -110,7 +111,7 @@ export const GroupDetail: React.FC = () => {
 
   const toggleAttendance = async (attendanceId: number, isPresent: boolean) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/attendance/${attendanceId}/`, {
+      const res = await fetch(`${API_BASE_URL}/attendance/${attendanceId}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -131,7 +132,7 @@ export const GroupDetail: React.FC = () => {
       if (role !== 'student') return;
       
       const res = await fetch(
-        `http://localhost:8000/api/v1/lesson-payments/student_lesson_payments/?student_id=${user?.id}&group_id=${groupId}`,
+        `${API_BASE_URL}/lesson-payments/student_lesson_payments/?student_id=${user?.id}&group_id=${groupId}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.ok) {

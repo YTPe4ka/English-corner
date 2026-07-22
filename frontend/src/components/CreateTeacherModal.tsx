@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import './CreateTeacherModal.css';
 
 interface CreateTeacherModalProps {
@@ -15,6 +16,7 @@ export const CreateTeacherModal: React.FC<CreateTeacherModalProps> = ({
 }) => {
   const { accessToken } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   
   const [formData, setFormData] = useState({
@@ -59,7 +61,7 @@ export const CreateTeacherModal: React.FC<CreateTeacherModalProps> = ({
         bio: formData.bio,
       };
 
-      const response = await fetch('http://localhost:8000/api/v1/teachers/', {
+      const response = await fetch(`${API_BASE_URL}/teachers/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -165,16 +167,26 @@ export const CreateTeacherModal: React.FC<CreateTeacherModalProps> = ({
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="password">Password *</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-                required
-                disabled={loading}
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  required
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? '👁️' : '🙈'}
+                </button>
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="specialization">Specialization</label>

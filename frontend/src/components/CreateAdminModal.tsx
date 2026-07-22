@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import './CreateTeacherModal.css';
 
 interface CreateAdminModalProps {
@@ -15,6 +16,7 @@ export const CreateAdminModal: React.FC<CreateAdminModalProps> = ({
 }) => {
   const { accessToken } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const [formData, setFormData] = useState({
@@ -51,7 +53,7 @@ export const CreateAdminModal: React.FC<CreateAdminModalProps> = ({
         },
       };
 
-      const response = await fetch('http://localhost:8000/api/v1/admins/', {
+      const response = await fetch(`${API_BASE_URL}/admins/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,16 +140,26 @@ export const CreateAdminModal: React.FC<CreateAdminModalProps> = ({
             </div>
             <div className="form-group">
               <label htmlFor="password">Password *</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-                required
-                disabled={loading}
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  required
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? '👁️' : '🙈'}
+                </button>
+              </div>
             </div>
           </div>
 

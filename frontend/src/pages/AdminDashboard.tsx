@@ -9,6 +9,7 @@ import { EditUserModal } from '../components/EditUserModal';
 import { EditGroupModal } from '../components/EditGroupModal';
 import { UserGroupsModal } from '../components/UserGroupsModal';
 import { Toasts } from '../components/Toast';
+import { API_BASE_URL } from '../api/config';
 import './AdminDashboard.css';
 
 type Tab = 'dashboard' | 'users' | 'groups' | 'finance' | 'analytics';
@@ -138,7 +139,7 @@ export const AdminDashboard: React.FC = () => {
       }
 
       // Load students
-      const studentsRes = await fetch('http://localhost:8000/api/v1/students/', {
+      const studentsRes = await fetch(`${API_BASE_URL}/students/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (studentsRes.status === 401) {
@@ -260,7 +261,7 @@ export const AdminDashboard: React.FC = () => {
     if (financeDateTo) params.set('date_to', financeDateTo);
 
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/admin/finance-history/?${params.toString()}`, {
+      const res = await fetch(`${API_BASE_URL}/admin/finance-history/?${params.toString()}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (res.ok) {
@@ -282,9 +283,9 @@ export const AdminDashboard: React.FC = () => {
 
   const patchActive = async (type: 'teacher' | 'student' | 'admin', id: number, newState: boolean) => {
     let url = '';
-    if (type === 'teacher') url = `http://localhost:8000/api/v1/teachers/${id}/`;
-    else if (type === 'student') url = `http://localhost:8000/api/v1/students/${id}/`;
-    else if (type === 'admin') url = `http://localhost:8000/api/v1/admins/${id}/`;
+    if (type === 'teacher') url = `${API_BASE_URL}/teachers/${id}/`;
+    else if (type === 'student') url = `${API_BASE_URL}/students/${id}/`;
+    else if (type === 'admin') url = `${API_BASE_URL}/admins/${id}/`;
     try {
       // Optimistic update: apply change locally first and rollback on error
       if (type === 'teacher') {

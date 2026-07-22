@@ -201,3 +201,40 @@
     display: none;
   }
 }
+
+/* 👁️ Password Toggle Eye Icon Styles */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 3rem !important;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 0.85rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  user-select: none;
+  color: #64748B;
+  z-index: 5;
+}
+
+.toggle-password-btn:hover {
+  opacity: 1;
+  color: #7C3AED;
+}
+

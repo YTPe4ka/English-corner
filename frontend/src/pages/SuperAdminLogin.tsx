@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../api/config';
 import './Login.css';
 
 export const SuperAdminLogin: React.FC = () => {
@@ -10,6 +11,7 @@ export const SuperAdminLogin: React.FC = () => {
   const [step, setStep] = useState<'login' | 'verify'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,7 +23,7 @@ export const SuperAdminLogin: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/admin/2fa/login/', {
+      const response = await fetch(`${API_BASE_URL}/admin/2fa/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -49,7 +51,7 @@ export const SuperAdminLogin: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/admin/2fa/verify/', {
+      const response = await fetch(`${API_BASE_URL}/admin/2fa/verify/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_id: sessionId, code }),
@@ -67,10 +69,7 @@ export const SuperAdminLogin: React.FC = () => {
       localStorage.setItem('refreshToken', data.refresh);
       localStorage.setItem('user', JSON.stringify(data.user));
       localStorage.setItem('role', 'superadmin');
-
-      // Sync AuthContext with localStorage
       syncFromStorage();
-
       navigate('/admin/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Verification failed');
@@ -120,15 +119,25 @@ export const SuperAdminLogin: React.FC = () => {
 
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
-                    required
-                    disabled={loading}
-                  />
+                  <div className="password-input-wrapper">
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Enter your password"
+                      required
+                      disabled={loading}
+                    />
+                    <button
+                      type="button"
+                      className="toggle-password-btn"
+                      onClick={() => setShowPassword(!showPassword)}
+                      title={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? '👁️' : '🙈'}
+                    </button>
+                  </div>
                 </div>
 
                 {error && <div className="error-message">{error}</div>}

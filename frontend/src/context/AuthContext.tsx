@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../api/config';
 import type { AuthResponse, User, UserRole } from '../types/index';
 
 interface AuthContextType {
@@ -165,7 +166,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const login = async (username: string, password: string, selectedRole: Exclude<UserRole, null>) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/auth/login/', {
+      const response = await fetch(`${API_BASE_URL}/auth/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

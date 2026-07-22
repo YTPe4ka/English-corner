@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { student } from '../api';
+import { API_BASE_URL } from '../api/config';
 import './StudentDashboard.css';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE = API_BASE_URL;
 
 interface NotificationItem {
   id: number;
