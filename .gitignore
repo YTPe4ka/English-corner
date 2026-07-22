@@ -1,0 +1,23 @@
+# Environment & Virtualenvs
+backend/venv*/
+backend/env*/
+backend/*.sqlite3
+backend/db.sqlite3
+*.env
+.env
+
+# Python Bytecode & Cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Node.js
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

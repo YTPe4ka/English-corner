@@ -1,0 +1,409 @@
+/* 🟣 Ultra-Luxury Student Detail ("Разрыв") Styles 🟣 */
+
+.student-detail {
+  padding: 2.25rem 1.5rem calc(68px + 2.5rem) 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Glass Card Definition */
+.student-detail .glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid var(--purple-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-bounce);
+}
+
+.student-detail .glass-card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Header Card */
+.student-header-card {
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-left: 6px solid var(--primary-purple) !important;
+}
+
+.student-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.student-avatar {
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(91, 33, 182, 0.18) 100%);
+  width: 90px;
+  height: 90px;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--purple-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.student-info-main h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark-purple) !important;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.student-info-main .student-email {
+  font-size: 0.95rem;
+  color: #334155 !important;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.student-info-main .student-id-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  background: var(--purple-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+/* Balance Hero Chip */
+.student-balance-hero {
+  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+  color: #FFFFFF !important;
+  padding: 1.5rem 2.25rem;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+  text-align: right;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.student-balance-hero .balance-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 0.2rem;
+}
+
+.student-balance-hero .balance-value {
+  font-family: var(--font-heading);
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Stats Grid */
+.student-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.student-stat-card {
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.student-stat-card .stat-icon {
+  font-size: 2.5rem;
+}
+
+.student-stat-card .stat-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-stat-card .stat-number {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-purple) !important;
+  line-height: 1.1;
+}
+
+.student-stat-card .stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Quick Top-Up Section */
+.topup-card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.topup-card h3 {
+  margin: 0 0 1rem 0;
+  color: var(--dark-purple) !important;
+  font-size: 1.35rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preset-chips {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  padding: 0.5rem 1.15rem;
+  background: var(--purple-light);
+  color: var(--primary-purple) !important;
+  border: 1.5px solid var(--purple-border);
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chip-btn:hover {
+  background: var(--primary-purple);
+  color: #FFFFFF !important;
+  border-color: var(--primary-purple);
+  transform: translateY(-2px);
+}
+
+.topup-form-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.topup-form-group input {
+  flex: 1;
+  min-width: 220px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.btn-topup-action {
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF !important;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.btn-topup-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.4);
+}
+
+/* Enrolled Groups Section */
+.groups-section {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header-row h3 {
+  margin: 0;
+  color: var(--dark-purple) !important;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.student-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.student-group-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--purple-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-bounce);
+}
+
+.student-group-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-purple);
+  box-shadow: var(--shadow-lg);
+}
+
+.group-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.group-card-header h4 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark-purple) !important;
+}
+
+.group-card-price {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A !important;
+  margin-bottom: 1.25rem;
+}
+
+.group-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1.5px solid var(--purple-light);
+}
+
+.btn-card-action {
+  flex: 1;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-card-action.primary {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  color: #FFFFFF !important;
+}
+
+.btn-card-action.charge {
+  background: #10B981;
+  color: #FFFFFF !important;
+}
+
+.btn-card-action.danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: #DC2626 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-card-action.danger:hover {
+  background: #DC2626;
+  color: #FFFFFF !important;
+}
+
+/* Edit Profile Card */
+.edit-profile-card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.edit-profile-card h3 {
+  margin: 0;
+  color: var(--dark-purple) !important;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* Glass Tables */
+.glass-table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--purple-border);
+}
+
+.glass-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.glass-table thead {
+  background: var(--purple-light);
+}
+
+.glass-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 800;
+  color: var(--dark-purple) !important;
+  border-bottom: 2px solid var(--purple-border);
+}
+
+.glass-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--purple-light);
+  color: #0F172A !important;
+  font-weight: 600;
+}
+
+.glass-table tbody tr:hover {
+  background: rgba(124, 58, 237, 0.04);
+}
+
+@media (max-width: 768px) {
+  .student-detail {
+    padding: 1.25rem 1rem calc(68px + 2rem) 1rem;
+  }
+  .student-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .student-balance-hero {
+    width: 100%;
+    align-items: flex-start;
+  }
+}

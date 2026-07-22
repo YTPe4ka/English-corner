@@ -1,0 +1,132 @@
+/* 🟣 Luxury Group Detail ("Разрыв") Styles 🟣 */
+
+.group-detail-container {
+  padding: 2.25rem 1.5rem calc(68px + 2.5rem) 1.5rem;
+  max-width: 1350px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.group-header-card {
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-left: 6px solid var(--primary-purple) !important;
+}
+
+.group-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.group-icon-avatar {
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(91, 33, 182, 0.18) 100%);
+  width: 90px;
+  height: 90px;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--purple-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.group-info-main h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark-purple) !important;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.group-info-main .group-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.92rem;
+  color: #334155 !important;
+  font-weight: 600;
+}
+
+.group-price-hero {
+  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+  color: #FFFFFF !important;
+  padding: 1.5rem 2.25rem;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+  text-align: right;
+  min-width: 220px;
+}
+
+.group-price-hero .price-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.group-price-hero .price-val {
+  font-family: var(--font-heading);
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Glass Tabs */
+.glass-tabs-header {
+  display: flex;
+  gap: 0.75rem;
+  border-bottom: 2px solid var(--purple-light);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.glass-tab-btn {
+  padding: 0.75rem 1.4rem;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: #475569;
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.glass-tab-btn:hover {
+  background: var(--purple-light);
+  color: var(--primary-purple);
+}
+
+.glass-tab-btn.active {
+  background: var(--purple-light);
+  color: var(--primary-purple);
+  border-color: var(--purple-border);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .group-detail-container {
+    padding: 1.25rem 1rem calc(68px + 2rem) 1rem;
+  }
+  .group-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .group-price-hero {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+}

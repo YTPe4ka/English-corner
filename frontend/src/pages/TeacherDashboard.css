@@ -1,0 +1,75 @@
+/* 📱 Mobile-First Teacher Dashboard Styles 📱 */
+
+.teacher-dashboard {
+  background: radial-gradient(circle at 50% 0%, #FAF5FF 0%, #EDE9FE 40%, #F5F3FF 100%);
+  min-height: 100vh;
+  padding-bottom: calc(var(--bottom-nav-height) + 2rem);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid var(--purple-border);
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 1.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.dashboard-tabs .tab {
+  background: none;
+  border: none;
+  padding: 0.85rem 1.4rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #334155 !important;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-bounce);
+}
+
+.dashboard-tabs .tab.active {
+  color: var(--primary-purple) !important;
+  font-weight: 800;
+  background: var(--purple-light);
+}
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.group-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--purple-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.group-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-purple);
+}
+
+@media (max-width: 768px) {
+  .groups-grid {
+    padding: 0 1rem;
+  }
+  .dashboard-tabs {
+    padding: 0.5rem 1rem;
+  }
+}

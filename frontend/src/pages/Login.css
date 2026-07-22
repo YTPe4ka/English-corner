@@ -1,0 +1,203 @@
+/* 🟣 Luxury Login Page Styles 🟣 */
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at 30% 20%, #F5F3FF 0%, #EDE9FE 50%, #FAF5FF 100%);
+  overflow: hidden;
+}
+
+.login-ambient-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35) 0%, rgba(167, 139, 250, 0) 70%);
+  top: -150px;
+  right: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatGlow 10s ease-in-out infinite alternate;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: #FFFFFF;
+  border: 1px solid var(--purple-border);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  z-index: 20;
+}
+
+.back-button:hover {
+  background: var(--purple-light);
+  transform: translateX(-3px);
+  border-color: var(--primary-purple);
+  box-shadow: var(--shadow-md);
+}
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  max-width: 1050px;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.login-box {
+  padding: 3rem 2.5rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.login-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.role-avatar-badge {
+  font-size: 2.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.2));
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-purple);
+  margin-bottom: 0.4rem;
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-purple);
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.1);
+  color: #B91C1C;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.demo-info {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--purple-border);
+  text-align: center;
+}
+
+.demo-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--primary-purple);
+  margin-bottom: 0.3rem;
+}
+
+.demo-code {
+  font-family: monospace;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark-purple);
+  background: var(--purple-light);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.login-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purple-card-artwork {
+  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem;
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(124, 58, 237, 0.3);
+}
+
+.artwork-icon-large {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.purple-card-artwork h2 {
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.purple-card-artwork p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.decorative-glow-circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+  bottom: -80px;
+  right: -80px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@media (max-width: 850px) {
+  .login-container {
+    grid-template-columns: 1fr;
+  }
+  .login-illustration {
+    display: none;
+  }
+}

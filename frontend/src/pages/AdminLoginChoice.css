@@ -1,0 +1,190 @@
+/* 🟣 Luxury Admin Login Choice Styles 🟣 */
+
+.admin-choice-container {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #F5F3FF 0%, #EDE9FE 50%, #FAF5FF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem;
+  overflow: hidden;
+}
+
+.admin-choice-container .choice-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 3rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 950px;
+  width: 100%;
+}
+
+.admin-choice-container h1 {
+  text-align: center;
+  color: var(--dark-purple);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.admin-choice-container .subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin: 2rem 0;
+}
+
+.choice-card-item {
+  background: #FFFFFF;
+  border: 2px solid var(--purple-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  position: relative;
+}
+
+.choice-card-item:hover {
+  border-color: var(--primary-purple);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(167, 139, 250, 0.3);
+  transform: translateY(-8px);
+}
+
+.choice-card-item.superadmin {
+  border-color: var(--primary-purple);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.04) 0%, rgba(124, 58, 237, 0.08) 100%);
+}
+
+.superadmin-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--primary-purple) 0%, #D946EF 100%);
+  color: #FFFFFF;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+.choice-icon {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.choice-icon .icon {
+  width: 72px;
+  height: 72px;
+  color: var(--primary-purple);
+  transition: all var(--transition-bounce);
+}
+
+.choice-card-item:hover .choice-icon .icon {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.choice-card-item h2 {
+  color: var(--dark-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.choice-card-item p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.5rem;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  text-align: left;
+  background: var(--purple-light);
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--purple-border);
+}
+
+.features-list span {
+  color: var(--dark-purple);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.features-list span::before {
+  content: '✦';
+  color: var(--primary-purple);
+  font-size: 0.9rem;
+}
+
+.choice-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.demo-credentials {
+  background: var(--purple-light);
+  border: 1px solid var(--purple-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.demo-credentials h3 {
+  color: var(--dark-purple);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.credential-item {
+  background: #FFFFFF;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--purple-border);
+  margin-bottom: 0.75rem;
+}
+
+.credential-item strong {
+  display: block;
+  color: var(--primary-purple);
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.credential-item p {
+  color: var(--dark-purple);
+  font-size: 0.88rem;
+  font-family: monospace;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-choice-container .choice-card {
+    padding: 2rem 1.5rem;
+  }
+  .admin-choice-container h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,395 @@
+.student-lesson-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lesson-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+.student-lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Header */
+.student-lesson-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.student-lesson-table th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.student-lesson-table th:last-child {
+  border-right: none;
+}
+
+.student-name-col {
+  min-width: 180px;
+  text-align: left;
+}
+
+.lesson-date-col {
+  min-width: 90px;
+  max-width: 100px;
+}
+
+.actions-col {
+  min-width: 60px;
+  width: 60px;
+}
+
+/* Lesson header structure */
+.lesson-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.lesson-number {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.lesson-date {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+/* Body rows */
+.student-lesson-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.student-lesson-table tbody tr:hover {
+  background-color: #f8f9ff;
+}
+
+.student-row {
+  height: 66px;
+}
+
+.student-row.expired {
+  background-color: #fff3cd;
+  opacity: 0.8;
+}
+
+/* Student name cell */
+.student-name-cell {
+  padding: 12px;
+  text-align: left;
+  border-right: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.student-email {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Lesson status cells */
+.lesson-status-cell {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 20px;
+}
+
+.lesson-status-cell:hover {
+  background-color: #f0f0f0;
+}
+
+.lesson-status-cell.paid {
+  background-color: #e8f5e9;
+}
+
+.lesson-status-cell.bonus {
+  background-color: #fff9e6;
+}
+
+.lesson-status-cell.unpaid {
+  background-color: #ffebee;
+}
+
+.lesson-status-cell.removed {
+  background-color: #f5f5f5;
+  opacity: 0.6;
+}
+
+.lesson-status-cell.future {
+  background-color: #f0f0f0;
+  opacity: 0.7;
+}
+
+.status-icon {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Actions cell */
+.actions-cell {
+  padding: 8px;
+  text-align: center;
+  border-right: 1px solid #e0e0e0;
+}
+
+.btn-actions {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-actions:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+  color: #333;
+}
+
+/* Actions row (expanded) */
+.student-actions-row {
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.student-actions-row td {
+  padding: 0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.actions-menu {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: white;
+  white-space: nowrap;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.action-btn.payment {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.action-btn.payment:hover {
+  opacity: 0.9;
+  filter: brightness(1.1);
+}
+
+.action-btn.bonus {
+  background: #fff9e6;
+  border-color: #ffd700;
+  color: #ff8c00;
+}
+
+.action-btn.bonus:hover {
+  background-color: #ffe680;
+}
+
+.action-btn.remove {
+  background: #ffebee;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.action-btn.remove:hover {
+  background-color: #ffdddd;
+}
+
+.action-btn.close {
+  background: #f0f0f0;
+  border-color: #ccc;
+  color: #666;
+}
+
+.action-btn.close:hover {
+  background-color: #e0e0e0;
+}
+
+/* Legend */
+.lesson-table-legend {
+  display: flex;
+  gap: 24px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 8px 8px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.lesson-table-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lesson-table-legend .icon {
+  font-size: 18px;
+}
+
+/* Footer */
+.lesson-table-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-refresh {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-refresh:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+
+/* Loading and error states */
+.lesson-table-loading,
+.lesson-table-empty,
+.lesson-table-error {
+  padding: 32px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.lesson-table-error {
+  color: #d32f2f;
+  background: #ffebee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .lesson-date-col {
+    font-size: 11px;
+    min-width: 75px;
+  }
+
+  .lesson-number {
+    font-size: 10px;
+  }
+
+  .lesson-date {
+    font-size: 10px;
+  }
+
+  .student-name-col {
+    min-width: 140px;
+  }
+
+  .actions-menu {
+    gap: 4px;
+  }
+
+  .action-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .student-lesson-table {
+    font-size: 12px;
+  }
+
+  .lesson-status-cell {
+    font-size: 16px;
+    padding: 6px 4px;
+  }
+
+  .student-name-cell {
+    padding: 8px;
+  }
+
+  .student-email {
+    display: none;
+  }
+
+  .student-name-col {
+    min-width: 100px;
+  }
+
+  .lesson-date-col {
+    min-width: 60px;
+  }
+
+  .lesson-header {
+    gap: 2px;
+  }
+
+  .actions-menu {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+}

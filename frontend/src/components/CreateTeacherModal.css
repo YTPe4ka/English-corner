@@ -1,0 +1,94 @@
+/* 🟣 Luxury Create Teacher Modal Styles 🟣 */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(46, 16, 101, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--purple-border);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(124, 58, 237, 0.2);
+  max-width: 620px;
+  width: 92%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--purple-border);
+  background: var(--purple-light);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--dark-purple);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background-color: rgba(124, 58, 237, 0.12);
+  color: var(--primary-purple);
+}
+
+.modal-form {
+  padding: 1.75rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-row.full-width {
+  grid-template-columns: 1fr;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-purple);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-hover) 100%);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}
