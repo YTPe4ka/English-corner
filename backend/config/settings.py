@@ -82,15 +82,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-if os.environ.get('DATABASE_URL'):
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ.get('DATABASE_URL'),
-            conn_max_age=600,
-            ssl_require=False
+DATABASE_URL = os.environ.get('DATABASE_URL')
+use_remote_db = False
+
+if DATABASE_URL:
+    try:
+        import psycopg2
+        parsed_db = dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=False)
+        conn = psycopg2.connect(
+            dbname=parsed_db.get('NAME'),
+            user=parsed_db.get('USER'),
+            password=parsed_db.get('PASSWORD'),
+            host=parsed_db.get('HOST'),
+            port=parsed_db.get('PORT') or 5432,
+            connect_timeout=3
         )
-    }
-else:
+        conn.close()
+        use_remote_db = True
+        DATABASES = {'default': parsed_db}
+        print("[SETTINGS] Connected to Remote PostgreSQL successfully.")
+    except Exception as e:
+        print(f"[SETTINGS WARNING] Failed to connect to remote DATABASE_URL ({e}). Falling back to SQLite.")
+
+if not use_remote_db:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
