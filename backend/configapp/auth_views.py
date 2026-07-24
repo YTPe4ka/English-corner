@@ -288,79 +288,86 @@ class SuperAdminLoginView(APIView):
     )
     def post(self, request):
         """Вход SuperAdmin и отправка кода 2FA"""
-        email_or_username = (request.data.get('email') or request.data.get('username') or '').strip()
-        password = request.data.get('password')
-
-        if not email_or_username or not password:
-            return Response(
-                {'error': 'Email or username and password are required'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        # Найти пользователя по email или username
-        user = User.objects.filter(Q(email__iexact=email_or_username) | Q(username__iexact=email_or_username)).first()
-        if not user:
-            return Response(
-                {'error': 'Invalid credentials'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
-
-        # Проверить пароль
-        if not user.check_password(password):
-            return Response(
-                {'error': 'Invalid credentials'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
-
-        # Проверить что это SuperAdmin
-        admin = Admin.objects.filter(user=user).first()
-        if not (user.is_superuser or (admin and admin.role in ['superadmin', 'super_admin'])):
-            return Response(
-                {'error': 'Only SuperAdmins can use this endpoint'},
-                status=status.HTTP_403_FORBIDDEN
-            )
-
-        # Получить или создать Admin профиль если не существует
-        if not admin:
-            admin = Admin.objects.create(user=user, role='superadmin', is_active=True)
-
-        # Получить или создать 2FA профиль
-        two_factor, created = TwoFactorAuth.objects.get_or_create(
-            admin=admin,
-            defaults={'email': user.email or 'admin@example.com'}
-        )
-
-        # Генерировать и сохранить код
-        code = generate_verification_code()
-        expires_at = timezone.now() + timedelta(minutes=10)
-        
-        verification_code = VerificationCode.objects.create(
-            two_factor=two_factor,
-            code=code,
-            expires_at=expires_at
-        )
-
-        # Отправить код на email (fail-safe fallback for production)
-        send_success = False
         try:
-            send_success = send_2fa_code(two_factor.email or user.email, code)
-        except Exception as e:
-            print(f"Email send error: {e}")
+            email_or_username = (request.data.get('email') or request.data.get('username') or '').strip()
+            password = request.data.get('password')
 
-        session_id = str(uuid.uuid4())
-        _2fa_sessions[session_id] = {
-            'user_id': user.id,
-            'admin_id': admin.id,
-            'created_at': timezone.now(),
-            'code': code
-        }
-        
-        return Response({
-            'message': f'Verification code generated for {two_factor.email or user.email}',
-            'email': two_factor.email or user.email,
-            'session_id': session_id,
-            'code': code  # Included in response for seamless development & fallback access
-        }, status=status.HTTP_200_OK)
+            if not email_or_username or not password:
+                return Response(
+                    {'error': 'Email or username and password are required'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Найти пользователя по email или username
+            user = User.objects.filter(Q(email__iexact=email_or_username) | Q(username__iexact=email_or_username)).first()
+            if not user:
+                return Response(
+                    {'error': 'Invalid credentials'},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
+            # Проверить пароль
+            if not user.check_password(password):
+                return Response(
+                    {'error': 'Invalid credentials'},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
+            # Проверить что это SuperAdmin
+            admin = Admin.objects.filter(user=user).first()
+            if not (user.is_superuser or (admin and admin.role in ['superadmin', 'super_admin'])):
+                return Response(
+                    {'error': 'Only SuperAdmins can use this endpoint'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            # Получить или создать Admin профиль если не существует
+            if not admin:
+                admin = Admin.objects.create(user=user, role='superadmin', is_active=True)
+
+            # Получить или создать 2FA профиль
+            two_factor, created = TwoFactorAuth.objects.get_or_create(
+                admin=admin,
+                defaults={'email': user.email or 'admin@example.com'}
+            )
+
+            # Генерировать и сохранить код
+            code = generate_verification_code()
+            expires_at = timezone.now() + timedelta(minutes=10)
+            
+            verification_code = VerificationCode.objects.create(
+                two_factor=two_factor,
+                code=code,
+                expires_at=expires_at
+            )
+
+            # Отправить код на email (fail-safe fallback for production)
+            try:
+                send_2fa_code(two_factor.email or user.email, code)
+            except Exception as e:
+                print(f"Email send error: {e}")
+
+            session_id = str(uuid.uuid4())
+            _2fa_sessions[session_id] = {
+                'user_id': user.id,
+                'admin_id': admin.id,
+                'created_at': timezone.now(),
+                'code': code
+            }
+            
+            return Response({
+                'message': f'Verification code generated for {two_factor.email or user.email}',
+                'email': two_factor.email or user.email,
+                'session_id': session_id,
+                'code': code  # Included in response for seamless development & fallback access
+            }, status=status.HTTP_200_OK)
+        except Exception as err:
+            import traceback
+            traceback.print_exc()
+            return Response(
+                {'error': f'SuperAdmin Login Error: {str(err)}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 class SuperAdminVerifyCodeView(APIView):
